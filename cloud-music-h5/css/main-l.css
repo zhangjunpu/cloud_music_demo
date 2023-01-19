@@ -1,0 +1,429 @@
+.discover {
+    display: flex;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+.discover .wrap-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 730px;
+    border-right: 1px solid #ccc;
+    padding: 20px;
+}
+
+
+/* left - 导航栏 */
+.v-hd2 {
+    position: relative;
+    height: 33px;
+    border-bottom: 2px solid #c10d0c;
+    background: url(../assets/img/sprite_02.png) no-repeat -225px -156px;
+    padding: 0 10px 0 34px;
+}
+
+.v-hd2 .title {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 28px;
+    counter-reset: #333;
+}
+
+.v-hd2 .more {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+}
+
+.v-hd2 .more a {
+    display: inline-block;
+    color: #666;
+}
+
+.v-hd2 .more a:hover {
+    text-decoration: underline;
+}
+
+.v-hd2 .more i {
+    width: 12px;
+    height: 12px;
+    margin-left: 4px;
+    background: url(../assets/img/sprite_02.png) no-repeat 0 -240px;
+}
+
+.v-hd2 .tabs {
+    display: inline-block;
+    margin: 7px 0 0 20px;
+    color: #ccc;
+}
+
+.v-hd2 .tabs a:hover {
+    text-decoration: underline;
+}
+
+.v-hd2 .tabs span {
+    margin: 0 10px;
+    color: #ccc;
+}
+
+
+
+/* 热门推荐 */
+.v-recommend {
+    width: 689px;
+}
+.hot-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 20px 0 40px 0;
+}
+
+.hot-list li {
+    width: 140px;
+    height: 204px;
+    margin-bottom: 20px;
+}
+.hot-list .item {
+    position: relative;
+}
+.hot-list .item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.hot-list .item .cover {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url(../assets/img/sprite_03.png) 0 0;
+}
+.hot-list .item .bottom-bar {
+    position: absolute;
+    top: 113px;
+    width: 100%;
+    height: 27px;
+    background: url(../assets/img/sprite_03.png);
+    background-position: 0 -537px;
+    color: #ccc;
+}
+
+.hot-list .item .bottom-bar .play-icon {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    display: inline-block;
+    width: 16px;
+    height: 17px;
+    background: url(../assets/img/sprite_icon.png);
+}
+
+.hot-list .item .bottom-bar .music-icon {
+    position: absolute;
+    left: 10px;
+    bottom: 8px;
+    width: 14px;
+    height: 11px;
+    background: url(../assets/img/sprite_icon.png);
+    background-position: 0 -24px;
+}
+.hot-list .item .bottom-bar .count {
+    position: absolute;
+    left: 28px;
+    bottom: 5px;
+    color: #ccc;
+}
+.hot-list .item .hot-text {
+    position: absolute;
+    top: 148px;
+    display: block;
+    font-size: 14px;
+    color: #000;
+}
+.hot-list .item .hot-text:hover {
+    text-decoration: underline;
+}
+.hot-list .item .hot-text i {
+    display: inline-block;
+    width: 35px;
+    height: 15px;
+    background: url(../assets/img/sprite_icon2.png);
+    background-position: -31px -658px;
+    vertical-align: middle;
+    margin-bottom: 3px;
+}
+
+
+/* 新碟上架 */
+.v-new {
+    width: 689px;
+}
+.new {
+    height: 186px;
+    margin: 20px 0 37px;
+    border: 1px solid #d3d3d3;
+}
+.new .inner {
+    position: relative;
+    height: 184px;
+    border: 1px solid #fff;
+    background-color: #f5f5f5;
+}
+
+.new .inner .btn {
+    position: absolute;
+    top: 83px;
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    background: url(../assets/img/sprite_02.png) no-repeat;
+}
+.new .inner .btn-left {
+    left: 4px;
+    background-position: -260px -75px;
+}
+.new .inner .btn-left:hover {
+    background-position: -280px -75px;
+}
+
+.new .inner .btn-right {
+    right: 4px;
+    background-position: -300px -75px;
+}
+.new .inner .btn-right:hover {
+    background-position: -320px -75px;
+}
+
+.new .inner .list {
+    position: absolute;
+    left: 20px;
+    top: 13px;
+    display: flex;
+    align-items: center;
+    width: 645px;
+    height: 180px;
+}
+.new .inner .list li {
+    width: 118px;
+    height: 150px;
+    margin-left: 11px;
+    background: url(../assets/img/sprite_02.png) no-repeat;
+    background-position: -260px 100px;
+}
+
+.new .inner .list .v-cover {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+.new .inner .list .v-cover .cover {
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    width: 118px;
+    height: 100px;
+    background: url(../assets/img/sprite_03.png);
+    background-position: 0 -570px;
+}
+.new .inner .list .v-cover .play {
+    position: absolute;
+    left: 72px;
+    bottom: 5px;
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+}
+.new .inner .list .v-cover .cover:hover + .play, .new .inner .list .v-cover .play:hover {
+    background: url(../assets/img/sprite_icon.png) 0 -85px;
+}
+.new .inner .list .text {
+    display: block;
+    line-height: 18px;
+    color: #000;
+}
+.new .inner .list .text:hover {
+    text-decoration: underline;
+}
+.new .inner .list .text-title {
+    margin-top: 7px;
+}
+.new .inner .list .text-artist {
+    color: #666;
+}
+
+
+/* 榜单 */
+.v-bill {
+    width: 689px;
+}
+
+.bill {
+    display: flex;
+    width: 689px;
+    height: 472px;
+    margin-top: 20px;
+    background: url(../assets/img/recommend-top-bg.png) no-repeat;
+}
+.bill .billist {
+    padding-left: 1px;
+    width: 230px;
+}
+
+.bill .lastlist {
+    width: 229px;
+}
+
+.billist .top {
+    display: flex;
+    height: 100px;
+    padding: 20px 0 0 19px;
+}
+.billist .top .cover {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+
+.billist .top .cover img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #f00;
+}
+.billist .top .cover a {
+    position: absolute;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    background: url(../assets/img/sprite_03.png) -145px -57px;
+    text-indent: -9999px;
+}
+.billist .top .info {
+    display: inline-block;
+    width: 116px;
+    margin: 6px 0 0 10px;
+}
+.billist .top .info .title h3 {
+    color: #333;
+    font-size: 14px;
+}
+.billist .top .info .btn {
+    display: flex;
+    margin-top: 10px;
+}
+.billist .top .info .icon {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+    background: url(../assets/img/sprite_02.png) no-repeat;
+}
+.billist .top .info .play {
+    background-position: -267px -205px;
+}
+.billist .top .info .play:hover {
+    background-position: -267px -235px;
+}
+
+.billist .top .info .fav {
+    background-position: -300px -205px;
+}
+.billist .top .info .fav:hover {
+    background-position: -300px -235px;
+}
+.billist .list {
+    height: 319px;
+    margin-left: 50px;
+    line-height: 32px;
+}
+.billist .list .item {
+    display: flex;
+    width: 180px;;
+    height: 32px;
+}
+
+.billist .list .item .rank {
+    display: inline-block;
+    width: 35px;
+    height: 32px;
+    margin-left: -35px;
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+}
+.billist .list .item:nth-child(-n+3) .rank {
+    color: #c10d0c;
+}
+
+.billist .list .item .name {
+    flex: 1;
+    width: 170px;
+    height: 32px;
+    color: #000;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.billist .list .item .name:hover {
+    text-decoration: underline;
+}
+
+.billist .list .item .name:hover + .btn, .billist .list .item .btn:hover {
+    display: flex;
+}
+.billist .list .item .btn {
+    display: none;
+    align-items: center;
+    height: 32px;
+}
+.billist .list .item .btn a {
+    display: block;
+    width: 17px;
+    height: 17px;
+    margin-right: 10px;
+    background: url(../assets/img/sprite_02.png) no-repeat;
+}
+.billist .list .item .btn .play {
+    background-position: -267px -268px;
+}
+.billist .list .item .btn .play:hover {
+    background-position: -267px -288px;
+}
+.billist .list .item .btn .add {
+    margin-top: 3px;
+    background: url(../assets/img/sprite_icon2.png) no-repeat;
+    background-position: 0 -700px;
+}
+.billist .list .item .btn .add:hover {
+    background-position: -22px -700px;
+}
+.billist .list .item .btn .fav {
+    margin-bottom: 1px;
+    background-position: -297px -268px;
+}
+.billist .list .item .btn .fav:hover {
+    background-position: -297px -288px;
+}
+
+
+.billist .more {
+    height: 32px;
+    line-height: 32px;
+    text-align: right;
+    margin-right: 32px;
+    color: #000;
+}
+.billist .more a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,119 @@
+.banner {
+    height: 285px;
+    background: url(../assets/img/banner_bg.jpg);
+    background-size: 6000px;
+    background-position: center center;
+}
+
+.banner .wrap {
+    position: relative;
+    width: 982px;
+    height: 285px;
+}
+
+.banner .wrap .imgs {
+    display: block;
+    width: 730px;
+}
+
+.banner .wrap .imgs img {
+    width: 730px;
+}
+
+.banner .download {
+    position: absolute;
+    top: 0;
+    right: -1px;
+    width: 254px;
+    height: 285px;
+    background: url(../assets/img/download.png) no-repeat 0 0;
+    background-position: 0 0;
+}
+
+.banner .download a {
+    display: block;
+    width: 215px;
+    height: 56px;
+    margin: 185px 0 0 19px;
+}
+
+.banner .download a:hover {
+    background: url(../assets/img/download.png);
+    background-position: 0 -289px;
+}
+
+.banner .download p {
+    display: block;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    color: #8d8d8d;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.banner .download .download-shadow {
+    position: absolute;
+    top: 0;
+    width: 20px;
+    height: 285px;
+    background: url(../assets/img/banner_sprite.png);
+}
+
+.banner .download .shadow-left {
+    left: -20px;
+    background-position: -1px 0;
+}
+
+.banner .download .shadow-right {
+    right: -20px;
+    background-position: -20px 0;
+}
+
+.wrap .dots {
+    position: absolute;
+    bottom: 10px;
+    width: 730px;
+    height: 20px;
+    text-align: center;
+}
+
+.banner .wrap .dots a {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(../assets/img/banner_sprite.png);
+    background-position: 3px -343px;
+}
+
+.banner .wrap .dots a:hover, .banner .wrap .dots .active {
+    background-position: -16px -343px;
+}
+
+.banner .wrap .btn-nav {
+    position: absolute;
+    top: 50%;
+    margin-top: -31px;
+    width: 37px;
+    height: 63px;
+    background: url(../assets/img/banner_sprite.png);
+}
+
+.banner .wrap .nav-left {
+    left: -68px;
+    background-position: 0 -360px;
+}
+
+.banner .wrap .nav-left:hover {
+    background-position: 0 -430px;
+}
+
+.banner .wrap .nav-right {
+    right: -68px;
+    background-position: 0 -508px;
+}
+
+.banner .wrap .nav-right:hover {
+    background-position: 0 -578px;
+}
