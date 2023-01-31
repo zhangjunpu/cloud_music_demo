@@ -1,7 +1,10 @@
 import styled from 'styled-components';
+import sprite_footer from '@/assets/img/sprite/sprite_footer.png';
+import ic_footer_police from '@/assets/img/ic_footer_police.png';
 
 export const FooterWrapped = styled.div`
     background-color: #f2f2f2;
+    border-top: 1px solid #d3d3d3;
 
     .funs {
         padding: 0 60px;
@@ -79,7 +82,7 @@ export const FooterWrapped = styled.div`
                 display: block;
                 width: 14px;
                 height: 14px;
-                background: url(${require("@/assets/img/ic_footer_police.png")});
+                background: url(${ic_footer_police});
                 background-size: cover;
                 margin: 0 2px 0 8px;
                 text-indent: -9999px;
@@ -92,7 +95,7 @@ export const FooterIcon = styled.a`
     display: inline-block;
     width: 45px;
     height: 45px;
-    background: url(${require("@/assets/img/sprite/sprite_footer.png")}) no-repeat;
+    background: url(${sprite_footer}) no-repeat;
     background-size: 220px 220px;
     background-position: ${props => props.icon[0]}px ${props => props.icon[1]}px;
             

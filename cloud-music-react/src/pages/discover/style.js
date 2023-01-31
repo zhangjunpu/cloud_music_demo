@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 export const DiscoverWrapped = styled.div`
-    height: 35px;
-    line-height: 35px;
-    background-color: #c20c0c;
-    margin-top: -5px;
-
     .top {
+        width: 100%;
+        height: 35px;
+        line-height: 35px;
+        margin-top: -5px;
+        background-color: #c20c0c;
         
         .menu {
-            margin-left: 180px;
+            padding-left: 180px;
 
             .item {
                 height: 20px;

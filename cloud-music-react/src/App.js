@@ -6,8 +6,8 @@ import { Provider } from 'react-redux';
 import routes from './router';
 import store from './store';
 
-import AppHeader from 'cmp/app-header';
-import AppFooter from 'cmp/app-footer';
+import AppHeader from '@/components/app-header';
+import AppFooter from '@/components/app-footer';
 
 
 const App = memo(() => {

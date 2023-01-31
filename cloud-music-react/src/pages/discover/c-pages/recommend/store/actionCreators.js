@@ -15,7 +15,7 @@ const changeTopBannersAction = (banners) => ({
 export const requestTopBannersAction = () => {
     return dispatch => {
         requestTopBanners().then(res => {
-            return dispatch(changeTopBannersAction(res.banners))
+            return dispatch(changeTopBannersAction(res && res.banners))
         })
     }
 }

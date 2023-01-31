@@ -10,8 +10,8 @@ const Discover = memo((props) => {
 
   return (
     <DiscoverWrapped>
-      <div className="top wrap_1">
-        <div className='menu'>
+      <div className="top">
+        <div className='menu wrap_1'>
           {
             discoverLink.map((item, i) => {
               return (

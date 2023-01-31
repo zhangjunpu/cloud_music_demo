@@ -10,7 +10,7 @@ import { HeaderWrapped, HeaderLeft, HeaderRight } from './style'
 
 const AppHeader = memo(() => {
   const renderListItem = (item, i) => {
-    if (i === 3 || i === 4) {
+    if (i >= 3) {
       return <a href={item.link} target="_blank" rel='noreferrer'>{item.name}</a>
     } else {
       return (
