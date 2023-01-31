@@ -4,7 +4,7 @@ import Ranking from '@/pages/discover/c-pages/ranking';
 import SongList from '@/pages/discover/c-pages/songlist';
 import DJRadio from '@/pages/discover/c-pages/djradio';
 import Artist from '@/pages/discover/c-pages/artist';
-import NewDisc from '@/pages/discover/c-pages/newdisc';
+import Album from '@/pages/discover/c-pages/album';
 import Mine from '@/pages/mine';
 import Follow from '@/pages/follow';
 import { Redirect } from 'react-router-dom';
@@ -45,8 +45,8 @@ const routes = [
                 component: Artist
             },
             {
-                path: "/discover/newdisc",
-                component: NewDisc
+                path: "/discover/album",
+                component: Album
             },
         ]
     },

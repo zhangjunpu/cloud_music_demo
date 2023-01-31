@@ -124,6 +124,6 @@ export const discoverLink = [
     },
     {
         name: "新碟上架",
-        link: "/discover/newdisc"
+        link: "/discover/album"
     },
 ];
