@@ -1,8 +1,20 @@
 import request from '../request';
 
 /**
- * 推荐页面 banner 数据
+ * banner 数据
  */
 export function requestTopBanners() {
-    return request.get('/banner');
+  return request.get('/banner');
+}
+
+/**
+ * 热门歌单
+ */
+export function requestHotRecommend() {
+  return request({
+    url: "/personalized",
+    params: {
+      limit: 8
+    }
+  });
 }

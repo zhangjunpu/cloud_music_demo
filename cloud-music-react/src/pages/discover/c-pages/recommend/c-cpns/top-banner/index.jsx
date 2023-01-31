@@ -23,13 +23,11 @@ const TopBanners = memo(() => {
     setCurIndex(to);
   })
 
-  console.log("TopBanner 重新渲染")
-
   return (
     <TopBannersWrapped bg={topBanners[curIndex] && topBanners[curIndex].imageUrl}>
       <div className="banner">
         <BannerLeft>
-          <Carousel effect="fade" ref={bannerRef}  beforeChange={(from, to) => changeBanners(from, to)}>
+          <Carousel effect="fade" autoplay ref={bannerRef} beforeChange={(from, to) => changeBanners(from, to)}>
             {
               topBanners.map((item, i) => {
                 return (
