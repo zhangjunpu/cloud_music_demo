@@ -1,5 +1,10 @@
-import { CHANGE_HOT_RECOMMENT, CHANGE_NEW_ALBUM, CHANGE_TOP_BANNER } from "./constant";
-import { requestTopBanners, requestHotRecommends, requestNewAlbums } from '@/services/modules/recommend'
+import { CHANGE_HOT_RECOMMENT, CHANGE_NEW_ALBUM, CHANGE_TOP_BANNER, CHANGE_TOP_LIST } from "./constant";
+import {
+  requestTopBanners,
+  requestHotRecommends,
+  requestNewAlbums,
+  requestToplist,
+} from '@/services/modules/recommend'
 
 /**
  * 更新 topbanners action
@@ -23,6 +28,14 @@ const changeHotRecommendsAction = (hotRecommends) => ({
 const changeNewAlbumsAction = (newAlbums) => ({
   type: CHANGE_NEW_ALBUM,
   newAlbums,
+})
+
+/**
+ * 更新榜单数据
+ */
+const changeTopListAction = (topList) => ({
+  type: CHANGE_TOP_LIST,
+  topList,
 })
 
 /**
@@ -54,6 +67,17 @@ export const requestNewAlbumsAction = (limit) => {
   return dispatch => {
     requestNewAlbums(limit).then(res => {
       return dispatch(changeNewAlbumsAction(res && res.albums));
+    })
+  }
+}
+
+/**
+ * 请求榜单数据
+ */
+export const reqeustTopListAction = () => {
+  return dispatch => {
+    requestToplist().then(res => {
+      return dispatch(changeTopListAction(res));
     })
   }
 }

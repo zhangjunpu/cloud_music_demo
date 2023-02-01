@@ -30,3 +30,25 @@ export function requestNewAlbums(limit) {
     }
   });
 }
+
+/**
+ * 请求榜单数据
+ */
+export function requestRanking(id) {
+  return request({
+    url: "/playlist/detail",
+    params: {
+      id,
+      s: 0,
+    }
+  });
+}
+
+/**
+ * 请求榜单数据
+ */
+export function requestToplist() {
+  return Promise.all([requestRanking(19723756), requestRanking(3779629), requestRanking(2884035)]).then(res => {
+    return res.map(item => item.playlist);
+  })
+}

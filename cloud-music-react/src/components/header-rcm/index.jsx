@@ -2,6 +2,11 @@ import React, { Fragment, memo } from 'react';
 
 import { HeaderWrapped } from './style';
 
+/**
+ * 通用 Header 标题，推荐页面
+ * @author junpu
+ * @date 2023-02-01 17:43
+ */
 const HeaderRCM = memo((props) => {
   const { title, items = [], more } = props;
 

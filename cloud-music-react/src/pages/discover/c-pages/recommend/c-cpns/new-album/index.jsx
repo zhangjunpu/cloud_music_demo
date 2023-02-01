@@ -8,6 +8,11 @@ import { NewAlbumWrapped } from './style';
 import HeaderRCM from '@/components/header-rcm';
 import AlbumCover from '@/components/album-cover';
 
+/**
+ * 推荐 - 新碟上架
+ * @author junpu
+ * @date 2023-02-01 17:50
+ */
 const NewAlbum = memo(() => {
   const { newAlbums } = useSelector(state => ({
     newAlbums: state.getIn(["recommend", "newAlbums"]),

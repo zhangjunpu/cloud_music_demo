@@ -8,6 +8,11 @@ import { HotRecommendWrapped } from './style';
 import HeaderRCM from '@/components/header-rcm';
 import SongsCoverList from '@/components/songs-cover-list';
 
+/**
+ * 推荐 - 热门推荐
+ * @author junpu
+ * @date 2023-02-01 17:49
+ */
 const HotRecommend = memo(() => {
   const { hotRecommends } = useSelector(state => ({
     hotRecommends: state.getIn(["recommend", "hotRecommends"]),

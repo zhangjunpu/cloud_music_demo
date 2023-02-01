@@ -21,6 +21,7 @@ export const TopBannersWrapped = styled.div`
         width: 37px;
         height: 67px;
         text-indent: -9999px;
+        cursor: pointer;
       }
 
       .left {

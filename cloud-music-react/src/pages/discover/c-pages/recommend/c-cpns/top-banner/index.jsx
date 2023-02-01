@@ -6,6 +6,11 @@ import { requestTopBannersAction } from '../../store/actionCreators';
 import { Carousel } from 'antd';
 import { TopBannersWrapped, BannerLeft, BannerRight, BannerA } from './style';
 
+/**
+ * 推荐 - 轮播图
+ * @author junpu
+ * @date 2023-02-01 17:50
+ */
 const TopBanners = memo(() => {
   const { topBanners } = useSelector(state => ({
     topBanners: state.getIn(["recommend", "topBanners"]),

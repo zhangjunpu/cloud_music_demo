@@ -5,8 +5,13 @@ import { RecommendWrapped, RecommendLeft, RecommendRight } from './style';
 import TopBanners from './c-cpns/top-banner';
 import HotRecommend from './c-cpns/hot-recommend';
 import NewAlbum from './c-cpns/new-album';
-import RecommendRanking from './c-cpns/recommend-ranking';
+import TopList from './c-cpns/top-list';
 
+/**
+ * 发现 - 推荐
+ * @author junpu
+ * @date 2023-02-01 17:49
+ */
 const Recommend = memo(() => {
   return (
     <RecommendWrapped>
@@ -15,7 +20,7 @@ const Recommend = memo(() => {
         <RecommendLeft>
           <HotRecommend />
           <NewAlbum />
-          <RecommendRanking />
+          <TopList />
         </RecommendLeft>
 
         <RecommendRight>
