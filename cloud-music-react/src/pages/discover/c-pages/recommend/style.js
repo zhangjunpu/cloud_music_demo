@@ -4,6 +4,7 @@ export const RecommendWrapped = styled.div`
   .content {
     display: flex;
     justify-content: space-between;
+    background-color: #fff;
   }
 `
 

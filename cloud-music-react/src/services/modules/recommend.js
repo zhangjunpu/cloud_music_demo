@@ -10,11 +10,23 @@ export function requestTopBanners() {
 /**
  * 热门歌单
  */
-export function requestHotRecommend() {
+export function requestHotRecommends(limit) {
   return request({
     url: "/personalized",
     params: {
-      limit: 8
+      limit,
+    }
+  });
+}
+
+/**
+ * 新碟上架
+ */
+export function requestNewAlbums(limit) {
+  return request({
+    url: "/album/new",
+    params: {
+      limit,
     }
   });
 }

@@ -1,5 +1,5 @@
-import { CHANGE_HOT_RECOMMENT, CHANGE_TOP_BANNER } from "./constant";
-import { requestTopBanners, requestHotRecommend } from '@/services/modules/recommend'
+import { CHANGE_HOT_RECOMMENT, CHANGE_NEW_ALBUM, CHANGE_TOP_BANNER } from "./constant";
+import { requestTopBanners, requestHotRecommends, requestNewAlbums } from '@/services/modules/recommend'
 
 /**
  * 更新 topbanners action
@@ -12,13 +12,21 @@ const changeTopBannersAction = (banners) => ({
 /**
  * 更新热门推荐
  */
-const changeHotRecommendAction = (hotRecommend) => ({
+const changeHotRecommendsAction = (hotRecommends) => ({
   type: CHANGE_HOT_RECOMMENT,
-  hotRecommend,
+  hotRecommends,
 })
 
 /**
- * 请求 topbanners 数据，并发送更新 topbanners action
+ * 更新新碟上架
+ */
+const changeNewAlbumsAction = (newAlbums) => ({
+  type: CHANGE_NEW_ALBUM,
+  newAlbums,
+})
+
+/**
+ * 请求 topbanners 数据
  */
 export const requestTopBannersAction = () => {
   return dispatch => {
@@ -29,12 +37,23 @@ export const requestTopBannersAction = () => {
 }
 
 /**
- * 请求热门推荐数据
+ * 请求热门推荐
  */
-export const requestHotRecommendAction = () => {
+export const requestHotRecommendsAction = (limit) => {
   return dispatch => {
-    requestHotRecommend().then(res => {
-      return dispatch(changeHotRecommendAction(res && res.result));
+    requestHotRecommends(limit).then(res => {
+      return dispatch(changeHotRecommendsAction(res && res.result));
+    })
+  }
+}
+
+/**
+ * 请求新碟上架
+ */
+export const requestNewAlbumsAction = (limit) => {
+  return dispatch => {
+    requestNewAlbums(limit).then(res => {
+      return dispatch(changeNewAlbumsAction(res && res.albums));
     })
   }
 }
