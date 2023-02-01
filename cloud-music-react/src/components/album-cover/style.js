@@ -24,25 +24,25 @@ export const AlbumCoverWrapped = styled.div`
       width: ${props => props.info.width};
       height: ${props => props.info.size};
       background-position: 0 ${props => props.info.bgp};
+    }
 
-      .play {
-        position: absolute;
-        bottom: 5px;
-        right: ${props => props.info.play_r};
-        display: block;
-        width: ${props => props.info.play_size};
-        height: ${props => props.info.play_size};
-        background-position: 0 ${props => props.info.play};
-        visibility: hidden;
+    .play {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      display: block;
+      width: ${props => props.info.play_size};
+      height: ${props => props.info.play_size};
+      background-position: 0 ${props => props.info.play};
+      visibility: hidden;
 
-        &:hover {
-          background-position: 0 ${props => props.info.play_sel};
-        }
+      &:hover {
+        background-position: 0 ${props => props.info.play_sel};
       }
+    }
 
-      &:hover .play {
-        visibility:visible
-      }
+    &:hover .play {
+      visibility:visible
     }
   }
 

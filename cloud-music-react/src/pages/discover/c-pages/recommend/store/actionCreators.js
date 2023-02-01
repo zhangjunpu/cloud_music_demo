@@ -1,9 +1,11 @@
-import { CHANGE_HOT_RECOMMENT, CHANGE_NEW_ALBUM, CHANGE_TOP_BANNER, CHANGE_TOP_LIST } from "./constant";
+import { CHANGE_HOT_ANCHOR, CHANGE_HOT_RECOMMENT, CHANGE_NEW_ALBUM, CHANGE_SETTLED_SINGER, CHANGE_TOP_BANNER, CHANGE_TOP_LIST } from "./constant";
 import {
   requestTopBanners,
   requestHotRecommends,
   requestNewAlbums,
   requestToplist,
+  requestSettledSinger,
+  requestHotAnchor,
 } from '@/services/modules/recommend'
 
 /**
@@ -39,13 +41,27 @@ const changeTopListAction = (topList) => ({
 })
 
 /**
+ * 更新入驻歌手
+ */
+const changeSettledSingerAction = (settledSinger) => ({
+  type: CHANGE_SETTLED_SINGER,
+  settledSinger,
+})
+
+/**
+ * 更新热门主播
+ */
+const changeHotAnchorAction = (hotAnchor) => ({
+  type: CHANGE_HOT_ANCHOR,
+  hotAnchor,
+})
+
+/**
  * 请求 topbanners 数据
  */
 export const requestTopBannersAction = () => {
   return dispatch => {
-    requestTopBanners().then(res => {
-      return dispatch(changeTopBannersAction(res && res.banners))
-    })
+    requestTopBanners().then(res => dispatch(changeTopBannersAction(res && res.banners)));
   }
 }
 
@@ -54,9 +70,7 @@ export const requestTopBannersAction = () => {
  */
 export const requestHotRecommendsAction = (limit) => {
   return dispatch => {
-    requestHotRecommends(limit).then(res => {
-      return dispatch(changeHotRecommendsAction(res && res.result));
-    })
+    requestHotRecommends(limit).then(res => dispatch(changeHotRecommendsAction(res && res.result)));
   }
 }
 
@@ -65,9 +79,7 @@ export const requestHotRecommendsAction = (limit) => {
  */
 export const requestNewAlbumsAction = (limit) => {
   return dispatch => {
-    requestNewAlbums(limit).then(res => {
-      return dispatch(changeNewAlbumsAction(res && res.albums));
-    })
+    requestNewAlbums(limit).then(res => dispatch(changeNewAlbumsAction(res && res.albums)));
   }
 }
 
@@ -76,8 +88,26 @@ export const requestNewAlbumsAction = (limit) => {
  */
 export const reqeustTopListAction = () => {
   return dispatch => {
-    requestToplist().then(res => {
-      return dispatch(changeTopListAction(res));
-    })
+    requestToplist().then(res => dispatch(changeTopListAction(res)));
+  }
+}
+
+/**
+ * 请求入驻歌手
+ */
+export const requestSettledSingerAction = (limit) => {
+  return dispatch => {
+    requestSettledSinger(limit).then(res => dispatch(changeSettledSingerAction(res.artists)));
+  }
+}
+
+/**
+ * 请求热门主播
+ */
+export const requestHotAnchorAction = (limit) => {
+  return dispatch => {
+    requestHotAnchor(limit).then(res => {
+      return dispatch(changeHotAnchorAction(res.data.list));
+    });
   }
 }

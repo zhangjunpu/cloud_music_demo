@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { Fragment, memo } from 'react';
 
 import { formatImageUrlSize } from '@/utils/format'
 
@@ -23,9 +23,10 @@ const AlbumCover = memo((props) => {
       return <i href="todu" className="img sprite_cover"></i>
     } else {
       return (
-        <a href="todu" className="img sprite_cover">
+        <Fragment>
+          <a href="todu" className="img sprite_cover"></a>
           <a href="todu" className="play sprite_iconall"></a>
-        </a>
+        </Fragment>
       )
     }
   }
@@ -76,7 +77,6 @@ const typeInfo = {
     play: "-85px",
     play_sel: "-110px",
     play_size: "22px",
-    play_r: "23px",
     title_font_size: "12px",
   },
   normal: {
@@ -88,7 +88,6 @@ const typeInfo = {
     play: "-140px",
     play_sel: "-170px",
     play_size: "28px",
-    play_r: "28px",
     title_font_size: "14px",
   },
   large: {

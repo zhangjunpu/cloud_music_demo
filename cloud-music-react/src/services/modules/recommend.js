@@ -52,3 +52,27 @@ export function requestToplist() {
     return res.map(item => item.playlist);
   })
 }
+
+/**
+ * 入驻歌手
+ */
+export function requestSettledSinger(limit) {
+  return request({
+    url: "/artist/list",
+    params: {
+      limit
+    }
+  })
+}
+
+/**
+ * 热门主播
+ */
+export function requestHotAnchor(limit) {
+  return request({
+    url: "/dj/toplist/popular",
+    params: {
+      limit
+    }
+  })
+}
