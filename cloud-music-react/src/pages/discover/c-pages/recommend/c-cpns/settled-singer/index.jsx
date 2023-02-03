@@ -1,11 +1,11 @@
-import React, { memo, useEffect } from 'react';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import React, { memo, useEffect } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { requestSettledSingerAction } from '../../store/actionCreators';
-import { formatImageUrlSize } from '@/utils/format';
+import { requestSettledSingerAction } from "../../store/actionCreators";
+import { formatImageUrlSize } from "@/utils/format";
 
-import { SettledSingerWrapped } from './style';
-import HeaderRCMSmall from '@/components/header-rcm-small';
+import { SettledSingerWrapped } from "./style";
+import HeaderRCMSmall from "@/components/header-rcm-small";
 
 /**
  * 推荐 - 入驻歌手
@@ -14,9 +14,12 @@ import HeaderRCMSmall from '@/components/header-rcm-small';
  */
 const SettledSinger = memo(() => {
   // redux
-  const { settledSinger } = useSelector(state => ({
-    settledSinger: state.getIn(["recommend", "settledSinger"]),
-  }), shallowEqual);
+  const { settledSinger } = useSelector(
+    (state) => ({
+      settledSinger: state.getIn(["recommend", "settledSinger"]),
+    }),
+    shallowEqual
+  );
   const dispatch = useDispatch();
 
   // hooks
@@ -29,22 +32,20 @@ const SettledSinger = memo(() => {
       <HeaderRCMSmall title="入驻歌手" more />
 
       <div className="list">
-        {
-          settledSinger.map((item, i) => {
-            return (
-              <a href="/todu" key={item.id} className="item">
-                <img src={formatImageUrlSize(item.picUrl, 62)} alt="" />
-                <div className="info">
-                  <span className="title text_nowrap">{item.name}</span>
-                  <span className="desc text_nowrap">{item.alias.join(" / ") || item.name}</span>
-                </div>
-              </a>
-            )
-          })
-        }
+        {settledSinger.map((item, i) => {
+          return (
+            <a href="/todu" key={item.id} className="item">
+              <img src={formatImageUrlSize(item.picUrl, 62)} alt="" />
+              <div className="info">
+                <span className="title text_nowrap">{item.name}</span>
+                <span className="desc text_nowrap">{item.alias.join(" / ") || item.name}</span>
+              </div>
+            </a>
+          );
+        })}
       </div>
     </SettledSingerWrapped>
-  )
-})
+  );
+});
 
 export default SettledSinger;

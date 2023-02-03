@@ -1,9 +1,9 @@
-import React, { memo } from 'react';
-import { renderRoutes } from 'react-router-config';
-import { NavLink } from 'react-router-dom';
+import React, { memo } from "react";
+import { renderRoutes } from "react-router-config";
+import { NavLink } from "react-router-dom";
 
-import { discoverLink } from '@/common/local-data';
-import { DiscoverWrapped } from './style'
+import { discoverLink } from "@/common/local-data";
+import { DiscoverWrapped } from "./style";
 
 const Discover = memo((props) => {
   const { route } = props;
@@ -11,19 +11,19 @@ const Discover = memo((props) => {
   return (
     <DiscoverWrapped>
       <div className="top">
-        <div className='menu wrap_1'>
-          {
-            discoverLink.map((item, i) => {
-              return (
-                <NavLink key={item.name} className="item" to={item.link}>{item.name}</NavLink>
-              )
-            })
-          }
+        <div className="menu wrap_1">
+          {discoverLink.map((item, i) => {
+            return (
+              <NavLink key={item.name} className="item" to={item.link}>
+                {item.name}
+              </NavLink>
+            );
+          })}
         </div>
       </div>
       {renderRoutes(route.routes)}
     </DiscoverWrapped>
-  )
-})
+  );
+});
 
 export default Discover;

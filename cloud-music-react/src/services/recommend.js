@@ -1,10 +1,10 @@
-import request from '../request';
+import request from "./base/request";
 
 /**
  * banner 数据
  */
 export function requestTopBanners() {
-  return request.get('/banner');
+  return request.get("/banner");
 }
 
 /**
@@ -15,7 +15,7 @@ export function requestHotRecommends(limit) {
     url: "/personalized",
     params: {
       limit,
-    }
+    },
   });
 }
 
@@ -27,7 +27,7 @@ export function requestNewAlbums(limit) {
     url: "/album/new",
     params: {
       limit,
-    }
+    },
   });
 }
 
@@ -40,7 +40,7 @@ export function requestRanking(id) {
     params: {
       id,
       s: 0,
-    }
+    },
   });
 }
 
@@ -48,9 +48,9 @@ export function requestRanking(id) {
  * 请求榜单数据
  */
 export function requestToplist() {
-  return Promise.all([requestRanking(19723756), requestRanking(3779629), requestRanking(2884035)]).then(res => {
-    return res.map(item => item.playlist);
-  })
+  return Promise.all([requestRanking(19723756), requestRanking(3779629), requestRanking(2884035)]).then((res) => {
+    return res.map((item) => item.playlist);
+  });
 }
 
 /**
@@ -60,9 +60,9 @@ export function requestSettledSinger(limit) {
   return request({
     url: "/artist/list",
     params: {
-      limit
-    }
-  })
+      limit,
+    },
+  });
 }
 
 /**
@@ -72,7 +72,7 @@ export function requestHotAnchor(limit) {
   return request({
     url: "/dj/toplist/popular",
     params: {
-      limit
-    }
-  })
+      limit,
+    },
+  });
 }

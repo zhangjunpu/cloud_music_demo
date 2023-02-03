@@ -1,8 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const RankingListWrapped = styled.div`
   width: 229px;
-  
 
   .header {
     height: 120px;
@@ -84,7 +83,7 @@ export const RankingListWrapped = styled.div`
         text-align: center;
       }
 
-      &:nth-child(-n+3) .no {
+      &:nth-child(-n + 3) .no {
         color: #c01c0c;
       }
 
@@ -125,7 +124,6 @@ export const RankingListWrapped = styled.div`
             &:hover {
               background-position: -20px -698px;
             }
-
           }
 
           .fav {
@@ -155,4 +153,4 @@ export const RankingListWrapped = styled.div`
       color: #000;
     }
   }
-`
+`;

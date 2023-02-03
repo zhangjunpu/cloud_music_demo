@@ -30,7 +30,8 @@ export const NewAlbumWrapped = styled.div`
         }
       }
 
-      .btn {position: absolute;
+      .btn {
+        position: absolute;
         top: 0;
         bottom: 0;
         margin: auto 0;
@@ -56,4 +57,4 @@ export const NewAlbumWrapped = styled.div`
       }
     }
   }
-`
+`;

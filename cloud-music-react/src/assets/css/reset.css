@@ -96,3 +96,7 @@ body, textarea, input, button {
 .sprite_button2 {
   background: url(../img/sprite/sprite_button2.png) no-repeat 0 9999px;
 }
+
+.sprite_player {
+  background: url(../img/sprite/sprite_player.png) no-repeat 0 9999px;
+}

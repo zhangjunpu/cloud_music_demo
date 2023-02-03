@@ -1,9 +1,7 @@
-import React, { memo } from 'react'
+import React, { memo } from "react";
 
 const Ranking = memo(() => {
-  return (
-    <div>Ranking</div>
-  )
-})
+  return <div>Ranking</div>;
+});
 
 export default Ranking;

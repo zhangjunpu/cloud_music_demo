@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const HotAnchorWrapped = styled.div`
   padding: 0 20px;
@@ -13,7 +13,6 @@ export const HotAnchorWrapped = styled.div`
       margin-bottom: 10px;
 
       .cover {
-        
         img {
           width: 40px;
           height: 40px;
@@ -25,7 +24,7 @@ export const HotAnchorWrapped = styled.div`
         display: flex;
         justify-content: center;
         flex-direction: column;
-        padding:0 5px 0 14px;
+        padding: 0 5px 0 14px;
 
         .title {
           color: #000;
@@ -38,4 +37,4 @@ export const HotAnchorWrapped = styled.div`
       }
     }
   }
-`
+`;

@@ -4,4 +4,4 @@ export const HotRecommendWrapped = styled.div`
   .list {
     margin-top: 20px;
   }
-`
+`;

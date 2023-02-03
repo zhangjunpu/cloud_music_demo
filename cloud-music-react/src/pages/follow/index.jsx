@@ -1,9 +1,7 @@
-import React, { memo } from 'react'
+import React, { memo } from "react";
 
 const Follow = memo(() => {
-  return (
-    <div>Follow</div>
-  )
-})
+  return <div>Follow</div>;
+});
 
 export default Follow;

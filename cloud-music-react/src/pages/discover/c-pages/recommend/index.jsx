@@ -1,13 +1,13 @@
-import React, { memo } from 'react';
+import React, { memo } from "react";
 
-import { RecommendWrapped, RecommendLeft, RecommendRight } from './style';
+import { RecommendWrapped, RecommendLeft, RecommendRight } from "./style";
 
-import TopBanners from './c-cpns/top-banner';
-import HotRecommend from './c-cpns/hot-recommend';
-import NewAlbum from './c-cpns/new-album';
-import TopList from './c-cpns/top-list';
-import SettledSinger from './c-cpns/settled-singer';
-import HotAnchor from './c-cpns/hot-anchor';
+import TopBanners from "./c-cpns/top-banner";
+import HotRecommend from "./c-cpns/hot-recommend";
+import NewAlbum from "./c-cpns/new-album";
+import TopList from "./c-cpns/top-list";
+import SettledSinger from "./c-cpns/settled-singer";
+import HotAnchor from "./c-cpns/hot-anchor";
 
 /**
  * 发现 - 推荐
@@ -35,7 +35,7 @@ const Recommend = memo(() => {
         </RecommendRight>
       </div>
     </RecommendWrapped>
-  )
-})
+  );
+});
 
 export default Recommend;

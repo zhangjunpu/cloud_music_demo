@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import rank_bg from '@/assets/img/ic_rank_bg.png'
+import styled from "styled-components";
+import rank_bg from "@/assets/img/ic_rank_bg.png";
 
 export const TopListWrapped = styled.div`
   .content {
@@ -9,4 +9,4 @@ export const TopListWrapped = styled.div`
     margin-top: 20px;
     background: url(${rank_bg});
   }
-`
+`;

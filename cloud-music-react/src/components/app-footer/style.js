@@ -5,6 +5,7 @@ import ic_footer_police from '@/assets/img/ic_footer_police.png';
 export const FooterWrapped = styled.div`
     background-color: #f2f2f2;
     border-top: 1px solid #d3d3d3;
+    padding-bottom: 52px;
 
     .funs {
         padding: 0 60px;

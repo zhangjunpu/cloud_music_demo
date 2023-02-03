@@ -1,9 +1,7 @@
-import React, { memo } from 'react'
+import React, { memo } from "react";
 
 const Artist = memo(() => {
-  return (
-    <div>Artist</div>
-  )
-})
+  return <div>Artist</div>;
+});
 
 export default Artist;

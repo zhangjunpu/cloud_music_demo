@@ -1,12 +1,12 @@
-import React, { memo } from 'react';
-import { useEffect } from 'react';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import React, { memo } from "react";
+import { useEffect } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { requestHotRecommendsAction } from '../../store/actionCreators';
+import { requestHotRecommendsAction } from "../../store/actionCreators";
 
-import { HotRecommendWrapped } from './style';
-import HeaderRCM from '@/components/header-rcm';
-import SongsCoverList from '@/components/songs-cover-list';
+import { HotRecommendWrapped } from "./style";
+import HeaderRCM from "@/components/header-rcm";
+import SongsCoverList from "@/components/songs-cover-list";
 
 /**
  * 推荐 - 热门推荐
@@ -14,14 +14,17 @@ import SongsCoverList from '@/components/songs-cover-list';
  * @date 2023-02-01 17:49
  */
 const HotRecommend = memo(() => {
-  const { hotRecommends } = useSelector(state => ({
-    hotRecommends: state.getIn(["recommend", "hotRecommends"]),
-  }), shallowEqual)
+  const { hotRecommends } = useSelector(
+    (state) => ({
+      hotRecommends: state.getIn(["recommend", "hotRecommends"]),
+    }),
+    shallowEqual
+  );
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(requestHotRecommendsAction(8));
-  }, [dispatch])
+  }, [dispatch]);
 
   return (
     <HotRecommendWrapped>
@@ -30,7 +33,7 @@ const HotRecommend = memo(() => {
         <SongsCoverList list={hotRecommends} />
       </div>
     </HotRecommendWrapped>
-  )
-})
+  );
+});
 
 export default HotRecommend;
