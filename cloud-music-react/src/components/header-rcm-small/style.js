@@ -6,7 +6,7 @@ export const HeaderSmallWrapped = styled.div`
   align-items: baseline;
   border-bottom: 1px solid #ccc;
   padding-bottom: 6px;
-  
+
   .title {
     display: inline-block;
     color: #333;
@@ -19,4 +19,4 @@ export const HeaderSmallWrapped = styled.div`
     display: inline-block;
     color: #666;
   }
-`
+`;

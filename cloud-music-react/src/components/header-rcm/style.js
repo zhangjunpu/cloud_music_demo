@@ -7,7 +7,7 @@ export const HeaderWrapped = styled.div`
   height: 35px;
   color: #666;
   padding: 0 10px 0 34px;
-  border-bottom: 2px solid #C10D0C;
+  border-bottom: 2px solid #c10d0c;
   background-position: -226px -156px;
 
   .left {
@@ -43,4 +43,4 @@ export const HeaderWrapped = styled.div`
       background-position: 0 -240px;
     }
   }
-`
+`;

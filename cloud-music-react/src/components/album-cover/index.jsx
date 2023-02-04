@@ -1,8 +1,8 @@
-import React, { Fragment, memo } from 'react';
+import React, { Fragment, memo } from "react";
 
-import { formatImageUrlSize } from '@/utils/format'
+import { formatImageUrlSize } from "@/utils/format";
 
-import { AlbumCoverWrapped } from './style'
+import { AlbumCoverWrapped } from "./style";
 
 /**
  * 唱片封面 Item
@@ -10,26 +10,29 @@ import { AlbumCoverWrapped } from './style'
  *  small 118x100
  *  normal 153x130
  *  large 209x177
- * 
+ *
  * @author junpu
  * @date 2023-02-01 15:12
  */
 const AlbumCover = memo((props) => {
-  const { info: { picUrl, name, artist }, size = "normal" } = props;
+  const {
+    info: { picUrl, name, artist },
+    size = "normal",
+  } = props;
   const isLarge = size === "large";
 
   const renderCover = () => {
     if (isLarge) {
-      return <i href="todu" className="img sprite_cover"></i>
+      return <i href="todu" className="img sprite_cover"></i>;
     } else {
       return (
         <Fragment>
           <a href="todu" className="img sprite_cover"></a>
           <a href="todu" className="play sprite_iconall"></a>
         </Fragment>
-      )
+      );
     }
-  }
+  };
 
   const renderInfo = () => {
     if (isLarge) {
@@ -37,11 +40,15 @@ const AlbumCover = memo((props) => {
     }
     return (
       <div className="info">
-        <a href="todu" className="title text_nowrap">{name}</a>
-        <a href="todu" className="artist text_nowrap">{artist && artist.name}</a>
+        <a href="todu" className="title text_nowrap">
+          {name}
+        </a>
+        <a href="todu" className="artist text_nowrap">
+          {artist && artist.name}
+        </a>
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <AlbumCoverWrapped className="sprite_02" info={getInfoBySize(size)}>
@@ -51,8 +58,8 @@ const AlbumCover = memo((props) => {
       </div>
       {renderInfo()}
     </AlbumCoverWrapped>
-  )
-})
+  );
+});
 
 function getInfoBySize(size) {
   switch (size) {
@@ -96,7 +103,7 @@ const typeInfo = {
     height: "177px",
     size: "177px",
     bgp: "-986px",
-  }
-}
+  },
+};
 
-export default AlbumCover
+export default AlbumCover;

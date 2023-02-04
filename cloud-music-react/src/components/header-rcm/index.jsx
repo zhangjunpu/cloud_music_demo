@@ -1,6 +1,6 @@
-import React, { Fragment, memo } from 'react';
+import React, { Fragment, memo } from "react";
 
-import { HeaderWrapped } from './style';
+import { HeaderWrapped } from "./style";
 
 /**
  * 通用 Header 标题，推荐页面
@@ -10,38 +10,31 @@ import { HeaderWrapped } from './style';
 const HeaderRCM = memo((props) => {
   const { title, items = [], more } = props;
 
-  const renderItem = (item, i) => {
-
-  }
+  const renderItem = (item, i) => {};
 
   return (
-    <HeaderWrapped className='sprite_02'>
+    <HeaderWrapped className="sprite_02">
       <div className="left">
-        <h3 className='title'>{title}</h3>
+        <h3 className="title">{title}</h3>
         <div className="items">
-          {
-            items.map((item, i, arr) => {
-              return (
-                <div className='item' key={item}>
-                  <a href="tudo">{item}</a>
-                  {i === arr.length - 1 ? null : <span>|</span>}
-                </div>
-              )
-            })
-          }
+          {items.map((item, i, arr) => {
+            return (
+              <div className="item" key={item}>
+                <a href="tudo">{item}</a>
+                {i === arr.length - 1 ? null : <span>|</span>}
+              </div>
+            );
+          })}
         </div>
       </div>
-      {
-        more ? (
-          <div className="more">
-            <a href="todu">更多</a>
-            <i className='sprite_02 icon'></i>
-          </div>
-        ) : null
-      }
-
+      {more ? (
+        <div className="more">
+          <a href="todu">更多</a>
+          <i className="sprite_02 icon"></i>
+        </div>
+      ) : null}
     </HeaderWrapped>
-  )
-})
+  );
+});
 
-export default HeaderRCM
+export default HeaderRCM;

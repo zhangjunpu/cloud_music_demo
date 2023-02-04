@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const SongsCoverListWrapped = styled.div`
   display: flex;
@@ -28,7 +28,7 @@ export const SongsCoverListWrapped = styled.div`
         height: 100%;
         background-position: 0 0;
       }
-      
+
       .info {
         position: absolute;
         top: 113px;
@@ -84,4 +84,4 @@ export const SongsCoverListWrapped = styled.div`
       }
     }
   }
-`
+`;

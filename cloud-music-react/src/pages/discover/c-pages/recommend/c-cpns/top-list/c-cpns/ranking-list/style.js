@@ -46,7 +46,7 @@ export const RankingListWrapped = styled.div`
           display: inline-block;
           width: 22px;
           height: 22px;
-          text-indent: -9999px;
+          cursor: pointer;
         }
 
         .play {
@@ -108,7 +108,7 @@ export const RankingListWrapped = styled.div`
             display: inline-block;
             width: 17px;
             height: 17px;
-            text-indent: -9999px;
+            cursor: pointer;
           }
 
           .play {

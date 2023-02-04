@@ -1,5 +1,8 @@
-import { formatImageUrlSize } from "@/utils/format";
 import React, { memo } from "react";
+import { useDispatch } from "react-redux";
+
+import { requestPlayMusicAction } from "@/pages/player/store";
+import { formatImageUrlSize } from "@/utils/format";
 
 import { RankingListWrapped } from "./style";
 
@@ -10,6 +13,12 @@ import { RankingListWrapped } from "./style";
  */
 const RankingList = memo((props) => {
   const { info } = props;
+
+  const dispatch = useDispatch();
+
+  const playMusic = (id) => {
+    dispatch(requestPlayMusicAction(id));
+  };
 
   return (
     <RankingListWrapped>
@@ -25,12 +34,8 @@ const RankingList = memo((props) => {
             {info.name}
           </a>
           <div className="funs">
-            <a href="/todu" className="btn play sprite_02">
-              播放
-            </a>
-            <a href="/todu" className="btn fav sprite_02">
-              收藏
-            </a>
+            <button className="btn play sprite_02" />
+            <button className="btn fav sprite_02" />
           </div>
         </div>
       </div>
@@ -44,15 +49,9 @@ const RankingList = memo((props) => {
                   {item.name}
                 </a>
                 <div className="operate">
-                  <a href="/todu" className="btn play sprite_02">
-                    播放
-                  </a>
-                  <a href="/todu" className="btn add sprite_icon">
-                    添加
-                  </a>
-                  <a href="/todu" className="btn fav sprite_02">
-                    收藏
-                  </a>
+                  <button className="btn play sprite_02" onClick={() => playMusic(item.id)} />
+                  <button className="btn add sprite_icon" />
+                  <button className="btn fav sprite_02" />
                 </div>
               </div>
             </div>
