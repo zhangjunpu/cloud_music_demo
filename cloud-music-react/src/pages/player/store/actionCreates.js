@@ -1,7 +1,8 @@
 import * as actionTypes from "./constant";
-import { requestSongDetail } from "@/services/player";
+import { requestLyric, requestSongDetail } from "@/services/player";
 import { PlaySequence } from "@/common/constant";
 import { randomInt } from "@/utils/random";
+import { parseLyric } from "@/utils/lyric-utils";
 
 const changeCurrentSongAction = (currentSong) => ({
   type: actionTypes.CHANGE_CURRENT_SONG,
@@ -21,6 +22,11 @@ const changePlaySequenceAction = (playSequence) => ({
 const changeCurrentIndexAction = (index) => ({
   type: actionTypes.CHANGE_CURRENT_INDEX,
   index,
+});
+
+const changeLyricsAction = (lyrics) => ({
+  type: actionTypes.CHANGE_LYRICS,
+  lyrics,
 });
 
 /**
@@ -58,13 +64,15 @@ export const prevOrNextAction = (tag) => {
       if (index >= playList.length) index = 0;
       if (index < 0) index = playList.length - 1;
     }
+    const song = playList[index];
     dispatch(changeCurrentIndexAction(index));
-    dispatch(changeCurrentSongAction(playList[index]));
+    dispatch(changeCurrentSongAction(song));
+    dispatch(requestLyricAction(song.id));
   };
 };
 
 /**
- * 请求歌曲详情
+ * 请求播放歌曲
  */
 export const requestPlayMusicAction = (id) => {
   return (dispatch, getState) => {
@@ -73,24 +81,43 @@ export const requestPlayMusicAction = (id) => {
     const playList = state.getIn(["player", "playList"]);
     const index = playList.findIndex((item) => item.id === id);
 
-    // 2. 如果找到了，直接更改 currentIndex、currentSong
+    // 2. 找到了，说明播放列表中有这首歌曲，直接更改 currentIndex、currentSong
     if (index !== -1) {
       // 如果当前正在播放此歌曲，直接返回
       const currentIndex = state.getIn(["player", "currentIndex"]);
       if (currentIndex === index) return;
 
+      const song = playList[index];
       dispatch(changeCurrentIndexAction(index));
-      dispatch(changeCurrentSongAction(playList[index]));
+      dispatch(changeCurrentSongAction(song));
+      dispatch(requestLyricAction(song.id));
     } else {
-      // 3. 如果没找到，请求歌曲详情，添加到 playlist结尾，变更 currentIndex，currentSong
+      // 3. 没找到，请求歌曲详情，添加到 playlist，变更 currentIndex，currentSong
       requestSongDetail(id).then((res) => {
         const song = res && res.songs && res.songs[0];
+        if (!song) return;
+
         const newPlayList = [...playList, song];
 
         dispatch(changePlayListAction(newPlayList));
         dispatch(changeCurrentIndexAction(newPlayList.length - 1));
         dispatch(changeCurrentSongAction(song));
+        dispatch(requestLyricAction(song.id));
       });
     }
+  };
+};
+
+/**
+ * 请求歌词
+ */
+const requestLyricAction = (id) => {
+  return (dispatch) => {
+    requestLyric(id).then((res) => {
+      const lyric = res && res.lrc && res.lrc.lyric;
+      if (!lyric) return;
+      const lyrics = parseLyric(lyric);
+      dispatch(changeLyricsAction(lyrics));
+    });
   };
 };

@@ -103,6 +103,8 @@ export const RankingListWrapped = styled.div`
           height: 19px;
           padding-top: 2px;
           display: none;
+          justify-content: space-between;
+          align-items: center;
 
           .btn {
             display: inline-block;
@@ -119,7 +121,6 @@ export const RankingListWrapped = styled.div`
           }
 
           .add {
-            margin-left: 8px;
             background-position: 2px -698px;
             &:hover {
               background-position: -20px -698px;
@@ -127,7 +128,6 @@ export const RankingListWrapped = styled.div`
           }
 
           .fav {
-            margin-left: 8px;
             background-position: -297px -268px;
             &:hover {
               background-position: -297px -288px;
@@ -136,7 +136,7 @@ export const RankingListWrapped = styled.div`
         }
 
         &:hover .operate {
-          display: block;
+          display: flex;
         }
       }
     }
