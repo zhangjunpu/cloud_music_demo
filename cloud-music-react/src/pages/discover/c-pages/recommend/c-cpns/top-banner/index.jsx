@@ -27,15 +27,15 @@ const TopBanners = memo(() => {
 
   // const [getIndex, setIndex] = userState
   const [curIndex, setCurIndex] = useState(0);
-  const changeBanners = useCallback((from, to) => {
-    setCurIndex(to);
-  });
+  const changeBanners = useCallback((to) => setCurIndex(to), [setCurIndex]);
+
+  const bgUrl = topBanners && topBanners[curIndex] && topBanners[curIndex].imageUrl;
 
   return (
-    <TopBannersWrapped bg={topBanners[curIndex] && topBanners[curIndex].imageUrl}>
+    <TopBannersWrapped bg={bgUrl}>
       <div className="banner">
         <BannerLeft>
-          <Carousel effect="fade" autoplay ref={bannerRef} beforeChange={(from, to) => changeBanners(from, to)}>
+          <Carousel effect="fade" autoplay ref={bannerRef} beforeChange={(_, to) => changeBanners(to)}>
             {topBanners.map((item, i) => {
               return (
                 <div className="item" key={item.scm}>

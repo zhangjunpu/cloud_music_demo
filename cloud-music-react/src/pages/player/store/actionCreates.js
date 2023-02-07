@@ -24,9 +24,17 @@ const changeCurrentIndexAction = (index) => ({
   index,
 });
 
-const changeLyricsAction = (lyrics) => ({
-  type: actionTypes.CHANGE_LYRICS,
-  lyrics,
+const changeLyricsListAction = (lyricList) => ({
+  type: actionTypes.CHANGE_LYRIC_LIST,
+  lyricList,
+});
+
+/**
+ * 变更当前歌词索引
+ */
+export const changeCurrentLyricIndexAction = (lyricIndex) => ({
+  type: actionTypes.CHANGE_CURRENT_LYRIC_INDEX,
+  lyricIndex,
 });
 
 /**
@@ -116,8 +124,53 @@ const requestLyricAction = (id) => {
     requestLyric(id).then((res) => {
       const lyric = res && res.lrc && res.lrc.lyric;
       if (!lyric) return;
-      const lyrics = parseLyric(lyric);
-      dispatch(changeLyricsAction(lyrics));
+      const lyricList = parseLyric(lyric);
+      dispatch(changeLyricsListAction(lyricList));
     });
+  };
+};
+
+/**
+ * 根据 index 删除歌曲
+ */
+export const deleteSongByIndexAction = (index) => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const playList = state.getIn(["player", "playList"]);
+    const currentIndex = state.getIn(["player", "currentIndex"]);
+
+    const newList = playList.filter((_, i) => index !== i);
+
+    dispatch(changePlayListAction(newList));
+    console.log(newList, !newList);
+    if (!newList || !newList.length) {
+      dispatch(changeCurrentIndexAction(0));
+      return;
+    }
+
+    if (index < currentIndex) {
+      dispatch(changeCurrentIndexAction(currentIndex - 1));
+    } else if (currentIndex === index) {
+      // 删除的是当前正在播放的歌曲
+      const newIndex = index >= newList.length ? newList.length - 1 : index;
+      const newSong = newList[newIndex];
+      dispatch(changeCurrentIndexAction(newIndex));
+      dispatch(changeCurrentSongAction(newSong));
+      dispatch(requestLyricAction(newSong.id));
+    }
+  };
+};
+
+/**
+ * 清空播放列表
+ */
+export const clearPlayListAction = () => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const playList = state.getIn(["player", "playList"]);
+    if (!playList || !playList.length) return;
+
+    dispatch(changeCurrentIndexAction(0));
+    dispatch(changePlayListAction([]));
   };
 };

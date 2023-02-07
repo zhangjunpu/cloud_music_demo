@@ -2,12 +2,18 @@ import React, { memo, useEffect, useRef, useState, useCallback } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
 import moment from "moment";
-import { prevOrNextAction, requestPlayMusicAction, switchPlaySequenceAction } from "../store";
 import { formatImageUrlSize, formatPlayUrl } from "@/utils/format";
+import { PlaySequence } from "@/common/constant";
+import {
+  changeCurrentLyricIndexAction,
+  prevOrNextAction,
+  requestPlayMusicAction,
+  switchPlaySequenceAction,
+} from "../store";
 
 import { Slider } from "antd";
 import { PlayerBarWrapped, PlayControl, PlayInfo, PlayOperate } from "./style";
-import { PlaySequence } from "@/common/constant";
+import PlayList from "../playlist";
 
 /**
  * 底部播放栏
@@ -20,14 +26,17 @@ const PlayerBar = memo(() => {
   const [progress, setProgress] = useState(0);
   const [isTouching, setTouching] = useState(false);
   const [isPlaying, setPlaying] = useState(false);
+  const [showPlaylist, setShowPlaylist] = useState(false);
 
   // redux
   const dispatch = useDispatch();
-  const { song, playSequence, playList } = useSelector(
+  const { song, playSequence, playList, lyricList, currentLyricIndex } = useSelector(
     (state) => ({
       song: state.getIn(["player", "currentSong"]),
       playSequence: state.getIn(["player", "playSequence"]),
       playList: state.getIn(["player", "playList"]),
+      lyricList: state.getIn(["player", "lyricList"]),
+      currentLyricIndex: state.getIn(["player", "currentLyricIndex"]),
     }),
     shallowEqual
   );
@@ -86,10 +95,22 @@ const PlayerBar = memo(() => {
    * audio 播放进度监听
    */
   const onTimeUpdate = (value) => {
-    const timemillis = value * 1000;
+    const currentTime = value * 1000;
     if (!isTouching) {
-      setCurTime(timemillis);
-      setProgress((curTime / duration) * 100);
+      setCurTime(currentTime);
+      setProgress((currentTime / duration) * 100);
+    }
+
+    // 找到当前歌词
+    let i = 0;
+    while (i < lyricList.length) {
+      const lyric = lyricList[i];
+      if (lyric.time > currentTime) break;
+      i++;
+    }
+
+    if (currentLyricIndex !== i - 1) {
+      dispatch(changeCurrentLyricIndexAction(i - 1));
     }
   };
 
@@ -163,7 +184,11 @@ const PlayerBar = memo(() => {
               </a>
             </div>
             <div className="right-bottom">
-              <Slider value={progress} onChange={(e) => onProgressChange(e)} onAfterChange={(e) => onProgressAfterChange(e)} />
+              <Slider
+                value={progress}
+                onChange={(e) => onProgressChange(e)}
+                onAfterChange={(e) => onProgressAfterChange(e)}
+              />
               <div className="time">
                 <span className="cur-time">{moment(curTime).format("mm:ss")}</span>
                 <span> / </span>
@@ -180,10 +205,13 @@ const PlayerBar = memo(() => {
           <i className="divider sprite_player" />
           <button className="btn volumn sprite_player" />
           <button className="btn sequence sprite_player" onClick={() => switchPlaySequence()} />
-          <button className="btn playlist sprite_player">{playList.length}</button>
+          <button className="btn playlist sprite_player" onClick={() => setShowPlaylist(!showPlaylist)}>
+            {playList.length}
+          </button>
         </PlayOperate>
       </div>
       <audio ref={audioRef} onTimeUpdate={(e) => onTimeUpdate(e.target.currentTime)} onEnded={() => playEnd()} />
+      {showPlaylist && <PlayList closeClick={() => setShowPlaylist(false)} />}
     </PlayerBarWrapped>
   );
 });

@@ -100,3 +100,11 @@ body, textarea, input, button {
 .sprite_player {
   background: url(../img/sprite/sprite_player.png) no-repeat 0 9999px;
 }
+
+.sprite_playlist {
+  background: url(../img/sprite/sprite_playlist.png) no-repeat 0 9999px;
+}
+
+.sprite_player_icon {
+  background: url(../img/sprite/sprite_player_icon.png) no-repeat 0 9999px;
+}

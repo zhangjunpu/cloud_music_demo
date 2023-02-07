@@ -43,6 +43,7 @@ export const TopBannersWrapped = styled.div`
     }
 
     .slick-dots {
+      z-index: auto;
       bottom: 5px;
 
       li {

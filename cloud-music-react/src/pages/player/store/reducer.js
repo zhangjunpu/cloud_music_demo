@@ -8,7 +8,8 @@ const defaultState = Map({
   playSequence: PlaySequence.ORDER,
   currentIndex: 0,
   currentSong: null,
-  lyrics: [],
+  lyricList: [],
+  currentLyricIndex: 0,
 });
 
 const reducer = (state = defaultState, action) => {
@@ -21,8 +22,10 @@ const reducer = (state = defaultState, action) => {
       return state.set("currentIndex", action.index);
     case actionTypes.CHANGE_CURRENT_SONG:
       return state.set("currentSong", action.currentSong);
-    case actionTypes.CHANGE_LYRICS:
-      return state.set("lyrics", action.lyrics);
+    case actionTypes.CHANGE_LYRIC_LIST:
+      return state.set("lyricList", action.lyricList);
+    case actionTypes.CHANGE_CURRENT_LYRIC_INDEX:
+      return state.set("currentLyricIndex", action.lyricIndex);
     default:
       return state;
   }
