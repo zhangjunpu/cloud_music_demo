@@ -11,6 +11,7 @@ import {
   switchPlaySequenceAction,
 } from "../store";
 
+import { NavLink } from "react-router-dom";
 import { Slider } from "antd";
 import { PlayerBarWrapped, PlayControl, PlayInfo, PlayOperate } from "./style";
 import PlayList from "../playlist";
@@ -30,16 +31,16 @@ const PlayerBar = memo(() => {
 
   // redux
   const dispatch = useDispatch();
-  const { song, playSequence, playList, lyricList, currentLyricIndex } = useSelector(
-    (state) => ({
-      song: state.getIn(["player", "currentSong"]),
-      playSequence: state.getIn(["player", "playSequence"]),
-      playList: state.getIn(["player", "playList"]),
-      lyricList: state.getIn(["player", "lyricList"]),
-      currentLyricIndex: state.getIn(["player", "currentLyricIndex"]),
-    }),
-    shallowEqual
-  );
+  const { song, playSequence, playList, lyricList, currentLyricIndex } = useSelector((state) => {
+    const player = state.get("player");
+    return {
+      song: player.get("currentSong"),
+      playSequence: player.get("playSequence"),
+      playList: player.get("playList"),
+      lyricList: player.get("lyricList"),
+      currentLyricIndex: player.get("currentLyricIndex"),
+    };
+  }, shallowEqual);
 
   // other
   const audioRef = useRef();
@@ -83,7 +84,7 @@ const PlayerBar = memo(() => {
    * 播放完毕
    */
   const playEnd = () => {
-    if (playSequence === PlaySequence.SINGLE) {
+    if (playSequence === PlaySequence.SINGLE || playList.length <= 1) {
       audioRef.current.currentTime = 0;
       audioRef.current.play();
       return;
@@ -170,9 +171,9 @@ const PlayerBar = memo(() => {
         <PlayInfo>
           <div className="cover">
             <img src={picUrl} alt="" />
-            <a href="#/" className="sprite_player">
+            <NavLink to="/discover/player" className="sprite_player">
               {name}
-            </a>
+            </NavLink>
           </div>
           <div className="info-right">
             <div className="right-top">

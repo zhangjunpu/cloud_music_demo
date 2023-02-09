@@ -1,7 +1,7 @@
 import React, { memo, useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { requestSettledSingerAction } from "../../store/actionCreators";
+import { requestSettledSingerAction } from "../../store";
 import { formatImageUrlSize } from "@/utils/format";
 
 import { SettledSingerWrapped } from "./style";

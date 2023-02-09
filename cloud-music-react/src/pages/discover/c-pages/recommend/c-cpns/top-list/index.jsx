@@ -1,7 +1,7 @@
 import React, { memo, useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { reqeustTopListAction } from "../../store/actionCreators";
+import { reqeustTopListAction } from "../../store";
 
 import { TopListWrapped } from "./style";
 import HeaderRCM from "@/components/header-rcm";

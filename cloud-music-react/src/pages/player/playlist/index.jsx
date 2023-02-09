@@ -15,16 +15,16 @@ import { scrollTo } from "@/utils/ui-helper";
  */
 const PlayList = memo((props) => {
   const dispatch = useDispatch();
-  const { currentSong, currentIndex, playList, lyricList, currentLyricIndex } = useSelector(
-    (state) => ({
-      currentSong: state.getIn(["player", "currentSong"]),
-      currentIndex: state.getIn(["player", "currentIndex"]),
-      playList: state.getIn(["player", "playList"]),
-      lyricList: state.getIn(["player", "lyricList"]),
-      currentLyricIndex: state.getIn(["player", "currentLyricIndex"]),
-    }),
-    shallowEqual
-  );
+  const { currentSong, currentIndex, playList, lyricList, currentLyricIndex } = useSelector((state) => {
+    const player = state.get("player");
+    return {
+      currentSong: player.get("currentSong"),
+      currentIndex: player.get("currentIndex"),
+      playList: player.get("playList"),
+      lyricList: player.get("lyricList"),
+      currentLyricIndex: player.get("currentLyricIndex"),
+    };
+  }, shallowEqual);
 
   const lyricRef = useRef();
   useEffect(() => {

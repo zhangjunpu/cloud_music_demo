@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { requestHotRecommendsAction } from "../../store/actionCreators";
+import { requestHotRecommendsAction } from "../../store";
 
 import { HotRecommendWrapped } from "./style";
 import HeaderRCM from "@/components/header-rcm";

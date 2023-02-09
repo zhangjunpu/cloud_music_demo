@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useRef } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { requestNewAlbumsAction } from "../../store/actionCreators";
+import { requestNewAlbumsAction } from "../../store";
 
 import { Carousel } from "antd";
 import { NewAlbumWrapped } from "./style";

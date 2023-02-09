@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import { HashRouter } from "react-router-dom";
 import { renderRoutes } from "react-router-config";
 import { Provider } from "react-redux";
@@ -9,16 +9,20 @@ import store from "./store";
 import AppHeader from "./components/app-header";
 import AppFooter from "./components/app-footer";
 import PlayerBar from "./pages/player/player-bar";
+import { ThemeProvider } from "styled-components";
+import { lightTheme } from "./common/theme";
 
 const App = memo(() => {
   return (
     <Provider store={store}>
-      <HashRouter>
-        <AppHeader />
-        {renderRoutes(routes)}
-        <AppFooter />
-        <PlayerBar />
-      </HashRouter>
+      <ThemeProvider theme={lightTheme}>
+        <HashRouter>
+          <AppHeader />
+          {renderRoutes(routes)}
+          <AppFooter />
+          <PlayerBar />
+        </HashRouter>
+      </ThemeProvider>
     </Provider>
   );
 });

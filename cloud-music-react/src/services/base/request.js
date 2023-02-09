@@ -26,9 +26,7 @@ instance.interceptors.request.use(
  * 响应拦截器
  */
 instance.interceptors.response.use(
-  (res) => {
-    return res.data;
-  },
+  (res) => res.data,
   (err) => {
     if (err && err.response) {
       switch (err.request.status) {

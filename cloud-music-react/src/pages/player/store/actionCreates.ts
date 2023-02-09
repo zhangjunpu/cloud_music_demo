@@ -1,47 +1,46 @@
-import * as actionTypes from "./constant";
 import { requestLyric, requestSongDetail } from "@/services/player";
 import { PlaySequence } from "@/common/constant";
 import { randomInt } from "@/utils/random";
 import { parseLyric } from "@/utils/lyric-utils";
+import { Lyric, SongDetail } from "@/types/data";
+import { Dispatch } from "redux";
+import { PlayerAction, RootState, RootThunkAction, RootThunkDispatch } from "@/types/store";
 
-const changeCurrentSongAction = (currentSong) => ({
-  type: actionTypes.CHANGE_CURRENT_SONG,
+const changeCurrentSongAction = (currentSong: SongDetail): PlayerAction => ({
+  type: "CHANGE_CURRENT_SONG",
   currentSong,
 });
 
-const changePlayListAction = (playList) => ({
-  type: actionTypes.CHANGE_PLAY_LIST,
+const changePlayListAction = (playList: SongDetail[]): PlayerAction => ({
+  type: "CHANGE_PLAY_LIST",
   playList,
 });
 
-const changePlaySequenceAction = (playSequence) => ({
-  type: actionTypes.CHANGE_PLAY_SEQUENCE,
+const changePlaySequenceAction = (playSequence: number): PlayerAction => ({
+  type: "CHANGE_PLAY_SEQUENCE",
   playSequence,
 });
 
-const changeCurrentIndexAction = (index) => ({
-  type: actionTypes.CHANGE_CURRENT_INDEX,
+const changeCurrentIndexAction = (index: number): PlayerAction => ({
+  type: "CHANGE_CURRENT_INDEX",
   index,
 });
 
-const changeLyricsListAction = (lyricList) => ({
-  type: actionTypes.CHANGE_LYRIC_LIST,
+const changeLyricsListAction = (lyricList: Lyric[]): PlayerAction => ({
+  type: "CHANGE_LYRIC_LIST",
   lyricList,
 });
 
-/**
- * 变更当前歌词索引
- */
-export const changeCurrentLyricIndexAction = (lyricIndex) => ({
-  type: actionTypes.CHANGE_CURRENT_LYRIC_INDEX,
+export const changeCurrentLyricIndexAction = (lyricIndex: number): PlayerAction => ({
+  type: "CHANGE_CURRENT_LYRIC_INDEX",
   lyricIndex,
 });
 
 /**
  * 切换播放顺序模式
  */
-export const switchPlaySequenceAction = (playSequence) => {
-  return (dispatch) => {
+export const switchPlaySequenceAction = (playSequence: number): RootThunkAction => {
+  return (dispatch: Dispatch) => {
     playSequence = playSequence + 1;
     if (playSequence > 2) {
       playSequence = 0;
@@ -53,12 +52,12 @@ export const switchPlaySequenceAction = (playSequence) => {
 /**
  * 上一首 or 下一首
  */
-export const prevOrNextAction = (tag) => {
-  return (dispatch, getState) => {
+export const prevOrNextAction = (tag: number): RootThunkAction => {
+  return (dispatch: RootThunkDispatch, getState: () => RootState) => {
     const state = getState();
-    const playList = state.getIn(["player", "playList"]);
-    const playSequence = state.getIn(["player", "playSequence"]);
-    let currentIndex = state.getIn(["player", "currentIndex"]);
+    const playList = state.getIn(["player", "playList"]) as SongDetail[];
+    const playSequence = state.getIn(["player", "playSequence"]) as number;
+    let currentIndex = state.getIn(["player", "currentIndex"]) as number;
 
     if (playList.length <= 1) return;
 
@@ -82,12 +81,12 @@ export const prevOrNextAction = (tag) => {
 /**
  * 请求播放歌曲
  */
-export const requestPlayMusicAction = (id) => {
-  return (dispatch, getState) => {
+export const requestPlayMusicAction = (id: number): RootThunkAction => {
+  return async (dispatch: RootThunkDispatch, getState: () => RootState) => {
     const state = getState();
     // 1. 在 playlist 中查找 id
-    const playList = state.getIn(["player", "playList"]);
-    const index = playList.findIndex((item) => item.id === id);
+    const playList = state.getIn(["player", "playList"]) as SongDetail[];
+    const index = playList.findIndex((item: SongDetail) => item.id === id);
 
     // 2. 找到了，说明播放列表中有这首歌曲，直接更改 currentIndex、currentSong
     if (index !== -1) {
@@ -101,17 +100,16 @@ export const requestPlayMusicAction = (id) => {
       dispatch(requestLyricAction(song.id));
     } else {
       // 3. 没找到，请求歌曲详情，添加到 playlist，变更 currentIndex，currentSong
-      requestSongDetail(id).then((res) => {
-        const song = res && res.songs && res.songs[0];
-        if (!song) return;
+      const res = await requestSongDetail(id);
+      const song = res && res.songs && res.songs[0];
+      if (!song) return;
 
-        const newPlayList = [...playList, song];
+      const newPlayList = [...playList, song];
 
-        dispatch(changePlayListAction(newPlayList));
-        dispatch(changeCurrentIndexAction(newPlayList.length - 1));
-        dispatch(changeCurrentSongAction(song));
-        dispatch(requestLyricAction(song.id));
-      });
+      dispatch(changePlayListAction(newPlayList));
+      dispatch(changeCurrentIndexAction(newPlayList.length - 1));
+      dispatch(changeCurrentSongAction(song));
+      dispatch(requestLyricAction(song.id));
     }
   };
 };
@@ -119,27 +117,26 @@ export const requestPlayMusicAction = (id) => {
 /**
  * 请求歌词
  */
-const requestLyricAction = (id) => {
-  return (dispatch) => {
-    requestLyric(id).then((res) => {
-      const lyric = res && res.lrc && res.lrc.lyric;
-      if (!lyric) return;
-      const lyricList = parseLyric(lyric);
-      dispatch(changeLyricsListAction(lyricList));
-    });
+const requestLyricAction = (id: number): RootThunkAction => {
+  return async (dispatch: Dispatch) => {
+    const res = await requestLyric(id);
+    const lyric = res && res.lrc && res.lrc.lyric;
+    if (!lyric) return;
+    const lyricList = parseLyric(lyric);
+    dispatch(changeLyricsListAction(lyricList));
   };
 };
 
 /**
  * 根据 index 删除歌曲
  */
-export const deleteSongByIndexAction = (index) => {
-  return (dispatch, getState) => {
+export const deleteSongByIndexAction = (index: number) => {
+  return (dispatch: RootThunkDispatch, getState: () => RootState) => {
     const state = getState();
-    const playList = state.getIn(["player", "playList"]);
-    const currentIndex = state.getIn(["player", "currentIndex"]);
+    const playList = state.getIn(["player", "playList"]) as SongDetail[];
+    const currentIndex = state.getIn(["player", "currentIndex"]) as number;
 
-    const newList = playList.filter((_, i) => index !== i);
+    const newList = playList.filter((_: SongDetail, i: number) => index !== i);
 
     dispatch(changePlayListAction(newList));
     console.log(newList, !newList);
@@ -165,9 +162,9 @@ export const deleteSongByIndexAction = (index) => {
  * 清空播放列表
  */
 export const clearPlayListAction = () => {
-  return (dispatch, getState) => {
+  return (dispatch: Dispatch, getState: () => RootState) => {
     const state = getState();
-    const playList = state.getIn(["player", "playList"]);
+    const playList = state.getIn(["player", "playList"]) as SongDetail[];
     if (!playList || !playList.length) return;
 
     dispatch(changeCurrentIndexAction(0));

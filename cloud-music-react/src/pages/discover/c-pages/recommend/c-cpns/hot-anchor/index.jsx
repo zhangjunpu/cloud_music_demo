@@ -1,7 +1,7 @@
 import React, { memo, useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import { requestHotAnchorAction } from "../../store/actionCreators";
+import { requestHotAnchorAction } from "../../store";
 import { formatImageUrlSize } from "@/utils/format";
 
 import { HotAnchorWrapped } from "./style";

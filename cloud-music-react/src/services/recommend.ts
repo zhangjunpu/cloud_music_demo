@@ -1,16 +1,18 @@
+import { SongList } from "@/types/data";
+import { ResArtists, ResBanner, ResDJAnchor, ResHotRecommend, ResNewAlbum, ResRanking } from "@/types/response";
 import request from "./base/request";
 
 /**
  * banner 数据
  */
-export function requestTopBanners() {
+export function requestTopBanners(): Promise<ResBanner> {
   return request.get("/banner");
 }
 
 /**
  * 热门歌单
  */
-export function requestHotRecommends(limit) {
+export function requestHotRecommends(limit: number): Promise<ResHotRecommend> {
   return request({
     url: "/personalized",
     params: {
@@ -22,7 +24,7 @@ export function requestHotRecommends(limit) {
 /**
  * 新碟上架
  */
-export function requestNewAlbums(limit) {
+export function requestNewAlbums(limit: number): Promise<ResNewAlbum> {
   return request({
     url: "/album/new",
     params: {
@@ -32,9 +34,9 @@ export function requestNewAlbums(limit) {
 }
 
 /**
- * 请求榜单数据
+ * 请求单一榜单
  */
-export function requestRanking(id) {
+export function requestRanking(id: number): Promise<ResRanking> {
   return request({
     url: "/playlist/detail",
     params: {
@@ -47,7 +49,7 @@ export function requestRanking(id) {
 /**
  * 请求榜单数据
  */
-export function requestToplist() {
+export function requestToplist(): Promise<SongList[]> {
   return Promise.all([requestRanking(19723756), requestRanking(3779629), requestRanking(2884035)]).then((res) => {
     return res.map((item) => item.playlist);
   });
@@ -56,7 +58,7 @@ export function requestToplist() {
 /**
  * 入驻歌手
  */
-export function requestSettledSinger(limit) {
+export function requestSettledSinger(limit: number): Promise<ResArtists> {
   return request({
     url: "/artist/list",
     params: {
@@ -68,7 +70,7 @@ export function requestSettledSinger(limit) {
 /**
  * 热门主播
  */
-export function requestHotAnchor(limit) {
+export function requestHotAnchor(limit: number): Promise<ResDJAnchor> {
   return request({
     url: "/dj/toplist/popular",
     params: {
